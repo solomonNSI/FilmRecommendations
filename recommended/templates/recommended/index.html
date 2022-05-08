@@ -1,23 +1,60 @@
-<html>
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>My test page</title>
-  </head>
-  <body>
-    <p>This is my page</p>
-    {% if listOfMovies %}
-        <ul>
-        {% for movie in listOfMovies %}
-        <li>
-            <a href="/recommended/{{ movie.movie_name }}/">
-                {{ movie.movie_genre }}
-            </a>
-        </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No movies are available.</p>
-    {% endif %}
-  </body>
-</html>
 
+    <style>
+    body {
+      background-color: linen;
+    }
+
+    h1 {
+      color: maroon;
+      margin-left: 40px;
+    }
+    </style>
+  </head>
+  <body style="text-align:center;">
+    <div>
+      <form>
+        <label for="recommendation">Movie</label>
+        <input type="text" id="recommended" name="recommended"><br><br>
+      </form>
+      <button onclick="toRedirect()" id="connect">EnterRoom</button>
+    </div>
+    <div>
+      <p style="color:blue;text-align:center;">This is the list of all Movies</p>
+      {% if listOfMovies %}
+          <ul style="text-align:center;">
+          {% for movie in listOfMovies %}
+          <li>
+              <a href="/recommended/{{ movie.movie_name }}/">
+                  {{ movie.movie_genre }}
+              </a>
+          </li>
+          {% endfor %}
+          </ul>
+      {% else %}
+          <p>No movies are available.</p>
+      {% endif %}
+    </div>
+  </body>
+  <script type="text/javascript">
+    function toRedirect(){
+    // get the user input
+      var user_value = document.getElementById('recommended').value ;
+      // check the validation
+      if(user_value!=''){
+          // redirect
+        location.href='results/' + user_value;
+      }else{
+        // alert error message
+        alert("validation error");
+      }
+    }
+  </script>
+</html>
