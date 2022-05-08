@@ -32,8 +32,8 @@
           <ul style="text-align:center;">
           {% for movie in listOfMovies %}
           <li>
-              <a href="/recommended/{{ movie.movie_name }}/">
-                  {{ movie.movie_genre }}
+              <a href="/results/{{ movie.movie_name }}/">
+                  {{ movie.movie_name }}
               </a>
           </li>
           {% endfor %}

@@ -6,8 +6,17 @@ from .models import Movie
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .recommender import RecommenderEngine
+
 def results(request, movie):
-    return HttpResponse("You're looking at the recommendation of movies for you %s." % movie)
+    try:
+        temp = Movie.objects.get(movie_name=movie)
+        recommender = RecommenderEngine()
+
+        return HttpResponse("You're looking at the recommendation of movies for you %s. and also \n " % temp + " " + recommender.recommend(movie))
+    except Movie.DoesNotExist:
+        raise Http404("Question does not exist")
+
 
 def index(request):
     listOfMovies = Movie.objects.all()
