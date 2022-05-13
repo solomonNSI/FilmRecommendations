@@ -1058,9 +1058,28 @@ weighting ratio.
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{np}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/home/tomas/Downloads/similarity\PYZus{}lower}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{tril}\PY{p}{(}\PY{n}{sim\PYZus{}castkey}\PY{p}{)}\PY{p}{)}
+\PY{n}{np}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{similarity}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{tril}\PY{p}{(}\PY{n}{sim\PYZus{}castkey}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
+
+    \hypertarget{summary}{%
+\subsection{Summary}\label{summary}}
+
+We have prepared data - created our model in a form of similarity matrix
+between each movie. Such matrix can be now used by itself as a part of
+recommender system app. From what we have seen, the final
+recommendations produced were sensible, and relevant.
+
+\hypertarget{future}{%
+\subsubsection{Future}\label{future}}
+
+Next, there could be several steps to improve our algorithm. One of them
+should be adding the use of a rating of the movie as a factor for the
+score, somewhat analogously to a prior probability (or fitness). Another
+possible improvement, which would be practical is to compress the
+matrix. The obvious has been described above, another, more interesting
+would be to use the generated recommendations as an input to a
+supervised learning algorithm, perhaps based on neural network.
 
     \hypertarget{other}{%
 \subsection{Other}\label{other}}
