@@ -5,7 +5,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>My test page</title>
+    <title>Film Recommendations</title>
 
     <style>
     body {
@@ -21,10 +21,10 @@
   <body style="text-align:center;">
     <div>
       <form>
-        <label for="recommendation">Movie</label>
-        <input type="text" id="recommended" name="recommended"><br><br>
+        <label for="recommendation">Movie 1</label>
+        <input type="text" id="recommended" name="recommended">
       </form>
-      <button onclick="toRedirect()" id="connect">EnterRoom</button>
+      <button onclick="toRedirect()" id="connect"> EnterRoom </button>
     </div>
     <div>
       <p style="color:blue;text-align:center;">This is the list of all Movies</p>
@@ -32,9 +32,21 @@
           <ul style="text-align:center;">
           {% for movie in listOfMovies %}
           <li>
-              <a href="/results/{{ movie.movie_name }}/">
-                  {{ movie.movie_name }}
+              <a href="/results/{{ movie.original_title }}/">
+                  {{ movie.original_title }}
               </a>
+              <p>
+                Index:
+                {{movie.index}}
+                Release Date:
+                  {{ movie.release_date}}
+              </p>
+              <p>
+                Score:
+                  {{ movie.score}}
+                Language:
+                  {{movie.original_language}}
+              </p>
           </li>
           {% endfor %}
           </ul>
@@ -42,19 +54,20 @@
           <p>No movies are available.</p>
       {% endif %}
     </div>
-  </body>
-  <script type="text/javascript">
-    function toRedirect(){
-    // get the user input
-      var user_value = document.getElementById('recommended').value ;
-      // check the validation
-      if(user_value!=''){
+    <script type="text/javascript">
+      function toRedirect(){
+      // get the user input
+        var user_value = document.getElementById('recommended').value ;
+        // check the validation
+        if(user_value!=''){
           // redirect
-        location.href='results/' + user_value;
-      }else{
-        // alert error message
-        alert("validation error");
+          location.href='results/' + user_value;
+        //  location.href='results/' + user_value "+" + user_value2 + "+" + user_value3;
+        } else{
+          // alert error message
+          alert("validation error");
+        }
       }
-    }
-  </script>
+    </script>
+  </body>
 </html>

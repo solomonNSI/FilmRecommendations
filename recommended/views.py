@@ -2,24 +2,37 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404,redirect
 from django.db.models import Q
 from django.template import loader
-from .models import Movie
+from .models import Movies
 from django.shortcuts import render
 from django.http import HttpResponse
 
 from .recommender import RecommenderEngine
 
+import array as arr
+
 def results(request, movie):
     try:
-        temp = Movie.objects.get(movie_name=movie)
+        finalString = movie.split("+")
+        movieFirstID = []
+
+        for i in range(3):
+            temp = []
+            for n in Movies.objects.filter(original_title = finalString[i]):
+                temp.append(n)
+
+            for x in temp:
+                if x.original_title == finalString[i]:
+                    movieFirstID.append(x.index)
+
         recommender = RecommenderEngine()
 
-        return HttpResponse("You're looking at the recommendation of movies for you %s. and also \n " % temp + " " + recommender.recommend(movie))
-    except Movie.DoesNotExist:
+        return HttpResponse("You're looking at the recommendation of movies for you \n " + " " + recommender.recommend(movieFirstID) + "All the movies you chose: " + finalString[0])
+    except Movies.DoesNotExist:
         raise Http404("Question does not exist")
 
 
 def index(request):
-    listOfMovies = Movie.objects.all()
+    listOfMovies = Movies.objects.all()
     context = {'listOfMovies': listOfMovies}
 
     return render(request, 'recommended/index.html', context)
