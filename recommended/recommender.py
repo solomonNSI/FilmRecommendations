@@ -1,6 +1,10 @@
+import numpy as np
+
 class RecommenderEngine():
     
     def __init__(self, similarity_path):
+        '''create recommender object
+            similarity path = path to .npy similarity matrix'''
         self.similarity = np.load(similarity_path)
 
     def recommend(self, in_mov, n=5, ratings=None):
