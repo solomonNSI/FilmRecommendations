@@ -16,7 +16,7 @@ class RecommenderEngine():
         BETA = 0.5
         def movie_rating(idx):
                 if ratings != None:
-                    rat = df.iloc[idx]['vote_average']
+                    rat = ratings[idx]
                     #count = df.iloc[idx]['vote_count'] TODO weighted vote
                     if rat > 0:
                         return rat
