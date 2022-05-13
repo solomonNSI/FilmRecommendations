@@ -6,7 +6,8 @@ class RecommenderEngine():
         '''create recommender object
             similarity path = path to .npy similarity matrix'''
         self.similarity = np.load(similarity_path)
-
+        print("Similarity matrix of", self.similarity.shape, "loaded")
+        
     def recommend(self, in_mov, n=5, ratings=None):
         #similarity of all m in M to I := S
         #in_mov = #[23076, 911] #= interstellar, space odyssey
