@@ -20,18 +20,6 @@
   </head>
   <body style="text-align:center;">
     <div>
-      <h1> Enter the movies names with + </h1>
-        <p>
-          Example: "Heat+Jumanji+anyothermovie"
-          Please enter three Movies
-        </p>
-      <form>
-        <label for="recommendation">Movies</label>
-        <input type="text" id="recommended" name="recommended">
-      </form>
-      <button onclick="toRedirect()" id="connect"> I feel Lucky </button>
-    </div>
-    <div>
       <h1> Your recommendation is READY!!!</h1>
       <p style="color:blue;text-align:center;">This is the list of all Movies</p>
       {% if listOfMovies %}
@@ -60,20 +48,6 @@
           <p>No movies are available.</p>
       {% endif %}
     </div>
-    <script type="text/javascript">
-      function toRedirect(){
-      // get the user input
-        var user_value = document.getElementById('recommended').value ;
-        // check the validation
-        if(user_value!=''){
-          // redirect
-          location.href='results/' + user_value;
-        //  location.href='results/' + user_value "+" + user_value2 + "+" + user_value3;
-        } else{
-          // alert error message
-          alert("validation error");
-        }
-      }
-    </script>
+
   </body>
 </html>

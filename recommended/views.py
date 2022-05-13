@@ -24,9 +24,15 @@ def results(request, movie):
                 if x.original_title == finalString[i]:
                     movieFirstID.append(x.index)
 
-        recommender = RecommenderEngine()
+        recommender = RecommenderEngine("/Users/suleymanhanyyev/github/datascience/tp6/FilmRecommendations/similarity.npy")
+        results = recommender.recommend(movieFirstID)
+        temp = []
+        for i in results:
+            for no in Movies.objects.filter(index = i):
+                temp.append(no)
 
-        return HttpResponse("You're looking at the recommendation of movies for you \n " + " " + recommender.recommend(movieFirstID) + "All the movies you chose: " + finalString[0])
+        context = {'listOfMovies': temp}
+        return render(request, 'recommended/results.html', context)
     except Movies.DoesNotExist:
         raise Http404("Question does not exist")
 
